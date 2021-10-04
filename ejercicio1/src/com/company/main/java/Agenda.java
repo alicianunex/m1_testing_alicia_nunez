@@ -3,16 +3,16 @@ package com.company.main.java;
 import java.io.*;
 import java.util.*;
 
-import static java.lang.System.*;
 
 public class Agenda
 {
-    public static void main(String args[]) throws IOException
+    public static void main(String[] args) throws IOException
     {
-        Vector<Persona> miagenda = new Vector<Persona>();
+        Vector<Persona> miagenda;
+        miagenda = new Vector<>();
         Persona contacto = null;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in)); int opcion = 0;
-        while (opcion != 4)
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in)); int opcion;
+        while (true)
         {
             mostrarMenu(); System.out.println("Introduzca una opcion"); opcion = Integer.parseInt(lector.readLine()); switch (opcion)
         {
@@ -29,49 +29,46 @@ public class Agenda
                 }
                 break;
             case 3:
-                int codigo=0;
-                String nombre="";
+                int codigo;
+                String nombre;
                 int seleccion;
                 System.out.println("Seleccione una opcion de busqueda"); System.out.println("\n1.-Nombre");
                 System.out.println("2.- Codigo"); seleccion=Integer.parseInt(lector.readLine());
                 boolean encontrado = false;
-                switch (seleccion)
-                {
-                    case 1:
-                        System.out.println("Introduzca el NOMBRE a buscar"); nombre=lector.readLine();
-                        for (int i=0; i< miagenda.size(); i++)
-                        {
+                switch (seleccion) {
+                    case 1 -> {
+                        System.out.println("Introduzca el NOMBRE a buscar");
+                        nombre = lector.readLine();
+                        for (int i = 0; i < miagenda.size(); i++) {
                             contacto = miagenda.elementAt(i);
-                            if (contacto.getNombre().equals(nombre)==true)
-                            {
+                            if (contacto.getNombre().equals(nombre)) {
                                 encontrado = true;
                                 break;
                             }
                         }
-                        if (encontrado == true)
-                        {
-                            System.out.println("Contacto: "+contacto.getNombre()+", Telefono: " + contacto.getTelefono()+", Codigo: "+contacto.getCodigo());
-                        }else{ System.out.println("No se ha encontrado el contacto"); }
-                        break;
-                    case 2:
-                        System.out.println("Introduzca el codigo a buscar"); codigo=Integer.parseInt(lector.readLine());
-                        for (int i=0; i< miagenda.size(); i++)
-                        {
-                            contacto = miagenda.elementAt(i);
-                            if (contacto.getCodigo() == (short)codigo)
-                            {
-                                encontrado = true;
-                                break;
-                            }
-                        }
-                        if (encontrado == true)
-                        {
-                            System.out.println("Contacto: "+contacto.getNombre()+", Telefono: " +contacto.getTelefono()+", Codigo: "+contacto.getCodigo()); }else{
+                        if (encontrado) {
+                            System.out.println("Contacto: " + contacto.getNombre() + ", Telefono: " + contacto.getTelefono() + ", Codigo: " + contacto.getCodigo());
+                        } else {
                             System.out.println("No se ha encontrado el contacto");
                         }
-                        break;
-                    default:
-                        System.out.println("Opcion Incorrecta");
+                    }
+                    case 2 -> {
+                        System.out.println("Introduzca el codigo a buscar");
+                        codigo = Integer.parseInt(lector.readLine());
+                        for (int i = 0; i < miagenda.size(); i++) {
+                            contacto = miagenda.elementAt(i);
+                            if (contacto.getCodigo() == (short) codigo) {
+                                encontrado = true;
+                                break;
+                            }
+                        }
+                        if (encontrado) {
+                            System.out.println("Contacto: " + contacto.getNombre() + ", Telefono: " + contacto.getTelefono() + ", Codigo: " + contacto.getCodigo());
+                        } else {
+                            System.out.println("No se ha encontrado el contacto");
+                        }
+                    }
+                    default -> System.out.println("Opcion Incorrecta");
                 }
                 break;
             case 4:
