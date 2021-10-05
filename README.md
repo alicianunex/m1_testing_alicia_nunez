@@ -7,3 +7,5 @@
 -Buscar Contacto
 
 -Salir
+
+-Borrar Contactos
